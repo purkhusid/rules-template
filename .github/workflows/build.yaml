@@ -1,0 +1,13 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bazelbuild/setup-bazelisk@v2
+      - run: bazel --bazelrc=${{ github.workspace }}/.github/workflows/ci.bazelrc --bazelrc=.bazelrc build --remote_header=x-buildbuddy-api-key=${{ secrets.BUILDBUDDY_API_KEY }} //...
