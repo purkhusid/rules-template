@@ -11,6 +11,7 @@ build --repository_cache=~/.cache/bazel-repo
 test --test_output=errors
 # Allows tests to run bazelisk-in-bazel, since this is the cache folder used
 test --test_env=XDG_CACHE_HOME
+build --workspace_status_command=$(pwd)/workspace_status.sh
 
 # BuildBuddy config
 build --bes_results_url=https://app.buildbuddy.io/invocation/
